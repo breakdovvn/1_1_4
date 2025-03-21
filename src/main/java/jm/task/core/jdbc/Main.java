@@ -1,23 +1,22 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 
 public class Main {
     public static void main(String[] args) {
-        UserDao userDao = new UserDaoHibernateImpl();
+        UserService userService = new UserServiceImpl();
 
-        userDao.createUsersTable();
+        userService.createUsersTable();
 
-        userDao.saveUser("John", "Doe", (byte) 30);
-        userDao.saveUser("Alice", "Smith", (byte) 25);
+        userService.saveUser("John", "Doe", (byte) 30);
+        userService.saveUser("Alice", "Smith", (byte) 25);
 
-        System.out.println(userDao.getAllUsers());
+        System.out.println(userService.getAllUsers());
 
-        userDao.cleanUsersTable();
-        userDao.dropUsersTable();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
 
         Util.shutdown();
     }
